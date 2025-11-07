@@ -242,6 +242,74 @@
     document.getElementById('prueba').onclick = function(){
       alert("Bienvenidos a la prueba de conocimientos sobre la raqueta de tenis 🎾");
       alert("Responde correctamente todas las preguntas para ganar");
+      
+        if(pregunta1 = prompt("¿Cómo se llama la parte superior de la raqueta que sostiene las cuerdas?")){
+          pregunta1 = pregunta1.trim();
+      }
+      if (pregunta1.toLowerCase() === "cabeza") {
+          alert("¡Correcto! La cabeza es la parte que sostiene el encordado y golpea la pelota.");
+          puntaje += 1;
+      } else {
+          alert("Incorrecto. La respuesta correcta es: cabeza.");
+      }
+
+      
+      if(pregunta2 = prompt("¿Cómo se llama la red de cuerdas entrelazadas que golpea la pelota?")){
+          pregunta2 = pregunta2.trim();
+      }
+      if (pregunta2.toLowerCase() === "encordado" || pregunta2.toLowerCase() === "cuerdas") {
+          alert("¡Correcto! El encordado es la red de cuerdas que genera el rebote de la pelota.");
+          puntaje += 1;
+      } else {
+          alert("Incorrecto. La respuesta correcta es: encordado.");
+      }
+
+    
+      if(pregunta3 = prompt("¿Cómo se llama la parte que une la cabeza con el mango y da estabilidad a la raqueta?")){
+          pregunta3 = pregunta3.trim();
+      }
+      if (pregunta3.toLowerCase() === "garganta") {
+          alert("¡Correcto! La garganta conecta la cabeza con el mango y mejora el control.");
+          puntaje += 1;
+      } else {
+          alert("Incorrecto. La respuesta correcta es: garganta.");
+      }
+
+      
+      if(pregunta4 = prompt("¿Cómo se llama la parte por donde el jugador sostiene la raqueta?")){
+          pregunta4 = pregunta4.trim();
+      }
+      if (pregunta4.toLowerCase() === "mango") {
+          alert("¡Correcto! El mango es la parte que se sostiene al jugar.");
+          puntaje += 1;
+      } else {
+          alert("Incorrecto. La respuesta correcta es: mango.");
+      }
+
+      // 🔹 Pregunta 5
+      if(pregunta5 = prompt("¿Cómo se llama la pieza que cubre el extremo del mango y evita que la raqueta se resbale?")){
+          pregunta5 = pregunta5.trim();
+      }
+      if (pregunta5.toLowerCase() === "tapa" || pregunta5.toLowerCase() === "tapa del mango" || pregunta5.toLowerCase() === "butt cap") {
+          alert("¡Correcto! La tapa del mango evita que la raqueta se resbale de la mano.");
+          puntaje += 1;
+      } else {
+          alert("Incorrecto. La respuesta correcta es: tapa del mango.");
+      }
+
+      // 🔹 Resultado
+      if(puntaje >= 5) {
+         alert("🎉 ¡Felicidades! Has respondido correctamente todas las preguntas.");
+          document.getElementById("calif").textContent = puntaje + "/5";
+          document.getElementById("resultado").setAttribute("class", "visible");
++         document.getElementById("imagen-resultado").setAttribute("src", "/jp.gif");
+         
+
+      } else {
+          alert("Has respondido " + puntaje + " preguntas correctamente. ¡Sigue practicando!");
+          document.getElementById("calif").textContent = puntaje + "/5";
+          document.getElementById("resultado").setAttribute("class", "visible");
+      }
     };
   </script>
 </body>
