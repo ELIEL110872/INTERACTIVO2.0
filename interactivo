@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    #header {
+      background-color: #111; /* fondo oscuro */
+      border-radius: 10px;
+      padding: 5px;
+    }
+
+    .nav {
+      padding-right: 20px;
+    }
+
+    .nav ul li{
+      display:inline;
+      padding:0 10px
+    }
+
+    h1 {
+      text-align: center;
+      color: #0f0; /* verde fosforescente */
+      margin: 8px;
+    }
+    #seccion {
+      display: flex;
+      flex-direction: row;
+      flex-wrap:wrap
+    }
+
+    .barra {
+      padding: 10px;
+      margin:5px;
+      background: #222; /* gris oscuro */
+      flex:3;
+      border-radius:10px;
+      display:flex;
+      flex-flow:column;
+      align-items:center;
+    }
+
+    .contenido {
+      padding: 10px;
+      border-radius:10px;
+      background: #333; /* gris más claro */
+      margin:5px;
+      flex:1 150px;
+      color:#fff; /* texto blanco */
+    }
+
+    .subcontenido2 {
+      display:flex;
+      flex-direction:row;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+
+    #resultado {
+      display:flex;
+      flex-direction:column;
+      flex-wrap:wrap;
+      align-items: center;
+    }
+    
+    #footer {
+      background-color: #111;
+      height: 100%;
+      text-align: center;
+      padding-top: 10px;
+      border-radius: 10px;
+      display:flex;
+      flex-flow:row;
+    }
+    .pie {
+      font-size: 25px;
+      font-weight: bold;
+      color:#0f0;
+    }
+
+    #galeria{
+      display:flex;
+      flex-direction:row;
+      flex-wrap:wrap; 
+      height:100px;
+    }
+
+    .proyecto{
+      height:150px;
+      max-width:150px;
+      background-color:#444;
+      border-radius:10px;
+      margin:10px;
+      flex:1 100px;
+    }
+
+    .barra a {
+      display:block;
+    }
+
+    #imagen-interactiva {
+      position: relative;
+      width: 300px;
+      height: 600px;
+      background-image: url('/raqueta.png');
+      background-size: cover;
+      border: 2px solid #0f0;
+      border-radius: 10px;
+    }
+
+    /* Hotspots */
+    #hotspot1, #hotspot2, #hotspot3, #hotspot4, #hotspot5, #hotspot6, #hotspot7 {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      background-color: rgba(0, 255, 0, 0.5); /* verde fosforescente semitransparente */
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    #hotspot1 { top: 50px; left: 120px; }
+    #hotspot2 { top: 180px; left: 100px; }
+    #hotspot3 { top: 350px; left: 110px; }
+    #hotspot4 { top: 480px; left: 100px; }
+    #hotspot5 { top: 350px; left: 220px; }
+    #hotspot6 { top: 480px; left: 220px; }
+    #hotspot7 { top: 560px; left: 140px; }
+
+    .text-hotspot {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #111;
+      font-weight: bold;
+    }
+
+    #instrucciones, #prueba {
+      flex:1;
+      cursor: pointer;
+    }
+
+    .texto-verde{
+      font-size:40px;
+      font-weight: bold;
+      color:#0f0;
+    }
+  </style>
+</head>
+<body>
+  <div id="header">
+    <div class="nav" style="text-align:center;">
+      <h3>Bienvenido a "Conociendo la raqueta de tenis"</h3>
+    </div>
+  </div>
+
+  <div id="seccion">
+    <div class="barra">
+      <div id="imagen-interactiva">
+        <div id="hotspot1"><span class="text-hotspot">1</span></div>
+        <div id="hotspot2"><span class="text-hotspot">2</span></div>
+        <div id="hotspot3"><span class="text-hotspot">3</span></div>
+        <div id="hotspot4"><span class="text-hotspot">4</span></div>
+        <div id="hotspot5"><span class="text-hotspot">5</span></div>
+        <div id="hotspot6"><span class="text-hotspot">6</span></div>
+        <div id="hotspot7"><span class="text-hotspot">7</span></div>
+      </div>
+    </div>
+
+    <div class="contenido">
+      <div class="subcontenido1">
+        <h2 id="titulo-info">Instrucciones</h2>
+        <p id="texto-info">Haz click en cada punto de la raqueta para ver su descripción. Luego realiza el test de conocimientos.</p>
+      </div>
+
+      <div class="subcontenido2">
+        <div class="proyecto">
+          <img id="imagen-info" src="/hotspot-cursor.png" alt="Imagen info" style="width:100%; height:100%; border-radius:10px;">
+        </div>
+      </div>
+
+      <div id="resultado" class="invisible">
+        <h2>Tu resultado:</h2>
+        <span id="calif" class="texto-verde">0/0</span>
+        <img id="imagen-resultado" width="200px" src="/jp.gif" />
+      </div>      
+    </div>
+  </div>
+
+  <div id="footer">
+    <div id="instrucciones"><img width="100px" src="/instrucciones.png" /></div>
+    <div id="prueba"><img width="100px" src="/test.png" /></div>
+  </div>
+
+  <script type="text/javascript">
+    let puntaje = 0;
+    let pregunta1 = "";
+
+    document.getElementById('hotspot1').onclick = function() {
+      document.getElementById('titulo-info').textContent = 'Cabeza (Head)';
+      document.getElementById('texto-info').textContent = 'Es la parte superior de la raqueta donde se encuentra el encordado y sirve para golpear la pelota.';
+      document.getElementById('imagen-info').setAttribute('src', '/cabeza.jpg');    
+    };
+    document.getElementById('hotspot2').onclick = function() {
+      document.getElementById('titulo-info').textContent = 'Encordado (Strings)';
+      document.getElementById('texto-info').textContent = 'Red de cuerdas tensadas dentro de la cabeza que permite golpear la pelota y controlar el efecto.';
+      document.getElementById('imagen-info').setAttribute('src', '/encordado.jpg');
+    };
+    document.getElementById('hotspot3').onclick = function() {
+      document.getElementById('titulo-info').textContent = 'Marco (Frame)';
+      document.getElementById('texto-info').textContent = 'Es la estructura que rodea la cabeza y sostiene el encordado, proporcionando rigidez y forma a la raqueta.';
+      document.getElementById('imagen-info').setAttribute('src', '/marco.jpg');
+    };
+    document.getElementById('hotspot4').onclick = function() {
+      document.getElementById('titulo-info').textContent = 'Garganta (Throat)';
+      document.getElementById('texto-info').textContent = 'Zona que une la cabeza con el mango, proporcionando estabilidad y balance a la raqueta.';
+      document.getElementById('imagen-info').setAttribute('src', '/garganta.jpg');
+    };
+    document.getElementById('hotspot5').onclick = function() {
+      document.getElementById('titulo-info').textContent = 'Mango (Handle)';
+      document.getElementById('texto-info').textContent = 'Parte de la raqueta que se sostiene con la mano. Suele llevar la empuñadura para mayor comodidad y agarre.';
+      document.getElementById('imagen-info').setAttribute('src', '/mango.jpg');
+    };
+    document.getElementById('hotspot6').onclick = function() {
+      document.getElementById('titulo-info').textContent = 'Empuñadura (Grip)';
+      document.getElementById('texto-info').textContent = 'Cubierta del mango que proporciona agarre, amortiguación y comodidad al jugador.';
+      document.getElementById('imagen-info').setAttribute('src', '/empuñadura.jpg');
+    };
+    document.getElementById('hotspot7').onclick = function() {
+      document.getElementById('titulo-info').textContent = 'Tapa del mango (Butt cap)';
+      document.getElementById('texto-info').textContent = 'Pieza ubicada en el extremo inferior del mango que evita que la raqueta se resbale de la mano.';
+      document.getElementById('imagen-info').setAttribute('src', '/tapa-mango.jpg');
+    };
+
+    document.getElementById('instrucciones').onclick = function(){
+      document.getElementById('titulo-info').textContent = 'Instrucciones';
+      document.getElementById('texto-info').textContent = 'Haz click en cada punto de la raqueta para ver su descripción. Luego realiza el test de conocimientos.';
+      document.getElementById('imagen-info').setAttribute('src', '/hotspot-cursor.png');
+    };
+
+    document.getElementById('prueba').onclick = function(){
+      alert("Bienvenidos a la prueba de conocimientos sobre la raqueta de tenis 🎾");
+      alert("Responde correctamente todas las preguntas para ganar");
+    };
+  </script>
+</body>
+</html>
